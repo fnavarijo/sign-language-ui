@@ -35,6 +35,9 @@ export default <Partial<Config>>{
           '"Noto Color Emoji"',
         ],
       },
+      gridTemplateRows: {
+        'course-card-rows': 'minmax(0, 1fr) auto'
+      }
     },
   },
 };
