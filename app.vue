@@ -9,4 +9,5 @@
 html, body { 
   @apply bg-primary-100 font-body;
 }
+
 </style>
