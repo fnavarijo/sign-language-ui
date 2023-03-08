@@ -1,7 +1,9 @@
 <template>
-  <div class="max-w-screen-xl mx-auto">
-    <AppNav />
-    <NuxtPage />
+  <div class="relative">
+    <div class="max-w-screen-xl mx-auto">
+      <AppNav />
+      <NuxtPage />
+    </div>
   </div>
 </template>
 
