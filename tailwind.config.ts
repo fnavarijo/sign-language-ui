@@ -1,5 +1,4 @@
 import type { Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default <Partial<Config>>{
   theme: {
@@ -40,4 +39,7 @@ export default <Partial<Config>>{
       }
     },
   },
+  plugins: [
+    require('@tailwindcss/line-clamp')
+  ]
 };

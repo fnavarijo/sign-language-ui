@@ -1212,6 +1212,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nuxt/kit@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@nuxt/kit@npm:3.1.0"
+  dependencies:
+    "@nuxt/schema": 3.1.0
+    c12: ^1.1.0
+    consola: ^2.15.3
+    defu: ^6.1.1
+    globby: ^13.1.3
+    hash-sum: ^2.0.0
+    ignore: ^5.2.4
+    jiti: ^1.16.2
+    knitwork: ^1.0.0
+    lodash.template: ^4.5.0
+    mlly: ^1.1.0
+    pathe: ^1.0.0
+    pkg-types: ^1.0.1
+    scule: ^1.0.0
+    semver: ^7.3.8
+    unctx: ^2.1.1
+    unimport: ^2.0.1
+    untyped: ^1.2.2
+  checksum: 96054dab2cfa6b4f682d06329551287b1a94c03f46189c5bf03720405e3d8d61116471d99d4e5e4499858b1187c74fe8e23b69032debbe2bfb21075aa4bdf4e2
+  languageName: node
+  linkType: hard
+
 "@nuxt/kit@npm:3.2.3, @nuxt/kit@npm:^3.0.0-rc.11, @nuxt/kit@npm:^3.2.0":
   version: 3.2.3
   resolution: "@nuxt/kit@npm:3.2.3"
@@ -1251,6 +1277,27 @@ __metadata:
     postcss-url: ^10.1.1
     semver: ^7.3.4
   checksum: e2846ad1383200ea3fe4d1146717f1c4ac06afb74997cc2ea0ba91210b6225f201fbd43af5d6bd5a03a86c7a53b95aae555f7d67a63a549d2d1036f0fe4b50fb
+  languageName: node
+  linkType: hard
+
+"@nuxt/schema@npm:3.1.0":
+  version: 3.1.0
+  resolution: "@nuxt/schema@npm:3.1.0"
+  dependencies:
+    c12: ^1.1.0
+    create-require: ^1.1.1
+    defu: ^6.1.1
+    hookable: ^5.4.2
+    jiti: ^1.16.2
+    pathe: ^1.0.0
+    pkg-types: ^1.0.1
+    postcss-import-resolver: ^2.0.0
+    scule: ^1.0.0
+    std-env: ^3.3.1
+    ufo: ^1.0.1
+    unimport: ^2.0.1
+    untyped: ^1.2.2
+  checksum: f7aa628d545b269c9fe68eeb0ac0771fab0eaf64475ebce5ebeabf176ec73d0f4d536c60b7facd7cf3630366bcfe6f74937b4dd3d14d91e7354ababe251bcda8
   languageName: node
   linkType: hard
 
@@ -1367,6 +1414,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nuxtjs/sanity@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "@nuxtjs/sanity@npm:1.6.0"
+  dependencies:
+    "@nuxt/kit": 3.1.0
+    "@portabletext/types": ^2.0.0
+    chalk: ^5.2.0
+    defu: ^6.1.2
+    fs-extra: ^11.0.0
+    knitwork: ^1.0.0
+    ofetch: ^1.0.0
+    ohash: ^1.0.0
+    pathe: ^1.1.0
+  checksum: bfb77ce70909fadf794b9c52ba4c8954be2a0c41fe9cd66b7f8b6d395cfed9beeaabcc8ad6bbaea2bf837c7702b257fe845820f3331ad250990274c3f647402d
+  languageName: node
+  linkType: hard
+
 "@nuxtjs/tailwindcss@npm:^6.4.1":
   version: 6.4.1
   resolution: "@nuxtjs/tailwindcss@npm:6.4.1"
@@ -1401,6 +1465,13 @@ __metadata:
   version: 1.5.0
   resolution: "@planetscale/database@npm:1.5.0"
   checksum: 02e9478360b4a4eca6657897f1d2f6c685e62b6afc191bf2cbc0fc0f548815593f745cc14bc8e68505b94627170ea8c654690d2f58fb9dc42e86cd0106da3636
+  languageName: node
+  linkType: hard
+
+"@portabletext/types@npm:^2.0.0":
+  version: 2.0.2
+  resolution: "@portabletext/types@npm:2.0.2"
+  checksum: 76e95891bc4632b4188d13c0ec6e39ade40b2751a449cbbf4a09cc7b858804437851a1f290dc18bb937de4c6b6f3db2e868b62450ebb61b50b21325a2319cb55
   languageName: node
   linkType: hard
 
@@ -1552,6 +1623,15 @@ __metadata:
     rollup:
       optional: true
   checksum: edea15e543bebc7dcac3b0ac8bc7b8e8e6dbd46e2864dbe5dd28072de1fbd5b0e10d545a610c0edaa178e8a7ac432e2a2a52e547ece1308471412caba47db8ce
+  languageName: node
+  linkType: hard
+
+"@tailwindcss/line-clamp@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "@tailwindcss/line-clamp@npm:0.4.2"
+  peerDependencies:
+    tailwindcss: ">=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1"
+  checksum: 26b8135df24fff51c3d3790ae795bdc12bc4a7113fa22dcab80568ae6ee00710e2ed4154048958c472bb654061f0f1573b7ac5e004ae6222cbd5ac6fcf199478
   languageName: node
   linkType: hard
 
@@ -2350,6 +2430,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"c12@npm:^1.1.0":
+  version: 1.2.0
+  resolution: "c12@npm:1.2.0"
+  dependencies:
+    defu: ^6.1.2
+    dotenv: ^16.0.3
+    giget: ^1.1.2
+    jiti: ^1.17.2
+    mlly: ^1.2.0
+    pathe: ^1.1.0
+    pkg-types: ^1.0.2
+    rc9: ^2.0.1
+  checksum: 62661fdfc683521f3f7c3ff3d8b37a316ba028ace36436d0d4d9e6f2c2687b54c5a0f20e0e846b4ceaf02fed1b9d1eaae269dd810f426b3e0f41a44d11984c2f
+  languageName: node
+  linkType: hard
+
 "c12@npm:^1.1.2":
   version: 1.1.2
   resolution: "c12@npm:1.1.2"
@@ -3062,7 +3158,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"defu@npm:^6.0.0, defu@npm:^6.1.2":
+"defu@npm:^6.0.0, defu@npm:^6.1.1, defu@npm:^6.1.2":
   version: 6.1.2
   resolution: "defu@npm:6.1.2"
   checksum: 2ec0ff8414d5a1ab2b8c7e9a79bbad6d97d23ea7ebf5dcf80c3c7ffd9715c30f84a3cc47b917379ea756b3db0dc4701ce6400e493a1ae1688dffcd0f884233b2
@@ -3800,7 +3896,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^11.1.0":
+"fs-extra@npm:^11.0.0, fs-extra@npm:^11.1.0":
   version: 11.1.0
   resolution: "fs-extra@npm:11.1.0"
   dependencies:
@@ -3926,7 +4022,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"giget@npm:^1.1.0":
+"giget@npm:^1.1.0, giget@npm:^1.1.2":
   version: 1.1.2
   resolution: "giget@npm:1.1.2"
   dependencies:
@@ -4626,6 +4722,15 @@ __metadata:
   version: 2.0.0
   resolution: "isexe@npm:2.0.0"
   checksum: 26bf6c5480dda5161c820c5b5c751ae1e766c587b1f951ea3fcfc973bafb7831ae5b54a31a69bd670220e42e99ec154475025a468eae58ea262f813fdc8d1c62
+  languageName: node
+  linkType: hard
+
+"jiti@npm:^1.16.2, jiti@npm:^1.17.2":
+  version: 1.18.2
+  resolution: "jiti@npm:1.18.2"
+  bin:
+    jiti: bin/jiti.js
+  checksum: 46c41cd82d01c6efdee3fc0ae9b3e86ed37457192d6366f19157d863d64961b07982ab04e9d5879576a1af99cc4d132b0b73b336094f86a5ce9fb1029ec2d29f
   languageName: node
   linkType: hard
 
@@ -5353,6 +5458,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mlly@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "mlly@npm:1.2.0"
+  dependencies:
+    acorn: ^8.8.2
+    pathe: ^1.1.0
+    pkg-types: ^1.0.2
+    ufo: ^1.1.1
+  checksum: 640b019eb20e8e556bd623141b861d47e5c05f8af00210376ce1015912695dbd93a38cfe7ba18ca04f00e75645378f0f94a48a90bfa6e1b5dee1f0ec9c14eed1
+  languageName: node
+  linkType: hard
+
 "mri@npm:^1.2.0":
   version: 1.2.0
   resolution: "mri@npm:1.2.0"
@@ -5748,7 +5865,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ofetch@npm:^1.0.1":
+"ofetch@npm:^1.0.0, ofetch@npm:^1.0.1":
   version: 1.0.1
   resolution: "ofetch@npm:1.0.1"
   dependencies:
@@ -6898,7 +7015,9 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@nuxtjs/google-fonts": prerelease
+    "@nuxtjs/sanity": ^1.6.0
     "@nuxtjs/tailwindcss": ^6.4.1
+    "@tailwindcss/line-clamp": ^0.4.2
     nuxt: ^3.2.3
   languageName: unknown
   linkType: soft
@@ -7220,7 +7339,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"std-env@npm:^3.3.2":
+"std-env@npm:^3.3.1, std-env@npm:^3.3.2":
   version: 3.3.2
   resolution: "std-env@npm:3.3.2"
   checksum: c02256bb041ba1870d23f8360bc7e47a9cf1fabcd02c8b7c4246d48f2c6bb47b4f45c70964348844e6d36521df84c4a9d09d468654b51e0eb5c600e3392b4570
@@ -7619,7 +7738,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ufo@npm:^1.0.0, ufo@npm:^1.1.0, ufo@npm:^1.1.1":
+"ufo@npm:^1.0.0, ufo@npm:^1.0.1, ufo@npm:^1.1.0, ufo@npm:^1.1.1":
   version: 1.1.1
   resolution: "ufo@npm:1.1.1"
   checksum: 6bd210ed93d8c0dedd76c456b1d1dfb0e3b08c2216ee6080e61f0f545de0bac24b3d3a5530cd6a403810855f8d8fc3922583965296142e04cfc287442635e6c7
@@ -7633,7 +7752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unctx@npm:^2.1.2":
+"unctx@npm:^2.1.1, unctx@npm:^2.1.2":
   version: 2.1.2
   resolution: "unctx@npm:2.1.2"
   dependencies:
@@ -7678,7 +7797,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"unimport@npm:^2.2.4":
+"unimport@npm:^2.0.1, unimport@npm:^2.2.4":
   version: 2.2.4
   resolution: "unimport@npm:2.2.4"
   dependencies:

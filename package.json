@@ -10,6 +10,10 @@
   "devDependencies": {
     "@nuxtjs/google-fonts": "prerelease",
     "@nuxtjs/tailwindcss": "^6.4.1",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "nuxt": "^3.2.3"
+  },
+  "dependencies": {
+    "@nuxtjs/sanity": "^1.6.0"
   }
 }
