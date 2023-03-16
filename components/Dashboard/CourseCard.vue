@@ -1,5 +1,9 @@
 <script setup>
   defineProps({
+    lectionId: {
+      type: String,
+      required: true
+    },
     name: {
       type: String,
       required: true
@@ -18,7 +22,7 @@
 <template>
   <!-- TODO:
     Should animate this on hover. Think on a good animation   -->
-  <NuxtLink to="/lecciones/hello" class="block">
+  <NuxtLink :to="`/lecciones/${lectionId}`" class="block">
     <div class="grid grid-rows-course-card-rows h-full">
       <div class="h-full bg-primary-400 rounded-t-xl overflow-hidden">
         <img class="w-full h-full object-cover object-[50%_20%]" :src="signImageUrl" alt="" />

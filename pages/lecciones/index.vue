@@ -9,6 +9,7 @@ type SanityResouce = {
 }
 
 type SanityLection = {
+  _id: string;
   name: string;
   description: string;
   sign: SanityResouce;
@@ -17,7 +18,9 @@ type SanityLection = {
 const { data: lections } = await useAsyncData('lections', async () => {
   const query = groq`*[_type == "lesson"]`;
   const { data } = await useSanityQuery<SanityLection[]>(query);
+  console.log(data)
   return data?.value?.map((lection) => ({
+    lectionId: lection._id,
     name: lection.name,
     description: lection.description,
     signImageUrl: getSanityImage(lection.sign.asset._ref),
