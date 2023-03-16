@@ -22,9 +22,12 @@ const { data: lection } = await useAsyncData(`lections-${lectionId}`, async () =
   const query = groq`*[_type == "lesson" && _id == "${lectionId}"]`;
   const { data } = await useSanityQuery<SanityLection[]>(query); 
 
-  // TODO: check the typing for this
-  const lection = data.value[0]
+  const lection = data.value?.[0]
   
+  if (!lection) {
+    return null
+  }
+ 
   const [_, videoId] = lection.video.split('?v=')
 
   return {
@@ -33,6 +36,11 @@ const { data: lection } = await useAsyncData(`lections-${lectionId}`, async () =
     videoId: videoId,
   }
 });
+
+if (!lection.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+}
+
 </script>
 
 <template>
