@@ -1,26 +1,17 @@
 <script lang="ts" setup>
+import { SanityBlocks } from 'sanity-blocks-vue-component'
+
+import { getSanityImage } from '~/transformers/image';
+import { Lection } from '~/types/sanity-resources/Lection'
+
 import YoutubeVideo from '~/components/YoutubeVideo.vue';
-
-type SanityResouce = {
-  asset: {
-    _ref: string;
-  }
-}
-
-type SanityLection = {
-  name: string;
-  description: string;
-  content: string;
-  sign: SanityResouce;
-  video: string;
-}
 
 const route = useRoute()
 const { name: lectionId} = route.params
 
 const { data: lection } = await useAsyncData(`lections-${lectionId}`, async () => {
   const query = groq`*[_type == "lesson" && _id == "${lectionId}"]`;
-  const { data } = await useSanityQuery<SanityLection[]>(query); 
+  const { data } = await useSanityQuery<Lection[]>(query); 
 
   const lection = data.value?.[0]
   
@@ -34,6 +25,7 @@ const { data: lection } = await useAsyncData(`lections-${lectionId}`, async () =
     name: lection.name,
     content: lection.content,
     videoId: videoId,
+    signImageUrl: getSanityImage(lection.sign.asset._ref),
   }
 });
 
@@ -58,19 +50,16 @@ if (!lection.value) {
       <YoutubeVideo :video-id="lection?.videoId" />
     </section>
     
-    <section class="w-full min-h-[40vh] bg-primary-700 text-neutral-100 mt-20 absolute left-0">
-      <div class="max-w-screen-xl mx-auto">
+    <section class="px-4 xl:px-0 absolute left-0 w-full min-h-[40vh] bg-primary-700 text-neutral-100 mt-20 overflow-hidden flex justify-center">
+      <div class="absolute w-full h-full max-w-screen-xl">
         <AppHeading :level="2" class="mt-12">
           ¿Qué aprenderás en esta lección?
         </AppHeading>
-        <!-- TODO: Should be enriched text -->
         <div class="grid grid-cols-[3fr_1fr]">
-          <p class="mt-6">
-            {{ lection?.content }}
-          </p>
-          <div class="relative overflow-hidden">
-            <img class="w-full absolute" src="https://cdn.sanity.io/images/4xfj4i31/production/5a8a3aadb57d95855b422c1763912cf996ff4bd0-720x1080.png" alt="" />
+          <div class="mt-6 content-block">
+            <SanityBlocks :blocks="lection?.content" />
           </div>
+          <img class="absolute bottom-0 right-0 w-80 transform translate-y-1/4 " :src="lection?.signImageUrl" alt="" />
         </div>
       </div>
     </section>

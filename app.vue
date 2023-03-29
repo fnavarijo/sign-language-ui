@@ -12,4 +12,8 @@ html, body {
   @apply bg-primary-100 font-body;
 }
 
+.content-block > ul {
+  @apply list-disc pl-8;
+}
+
 </style>
