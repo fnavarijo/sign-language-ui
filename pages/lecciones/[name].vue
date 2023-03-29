@@ -8,7 +8,6 @@ import YoutubeVideo from '~/components/YoutubeVideo.vue';
 
 const route = useRoute()
 const { name: lectionId} = route.params
-// trigger build
 
 const { data: lection } = await useAsyncData(`lections-${lectionId}`, async () => {
   const query = groq`*[_type == "lesson" && _id == "${lectionId}"]`;
