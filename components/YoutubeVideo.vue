@@ -9,14 +9,14 @@
 
   const props = defineProps<YoutubeVideoProps>()
 
-  let player: YTPlayer;
+  let player;
   
   onMounted(() => {
-    if (props.videoId) {
-      player = new YTPlayer('#yt-video')
-      player.setSize(1080, 607)
-      player.load(props.videoId)
-    }
+    player = new YTPlayer('#yt-video')
+    player.setSize(1080, 607)
+    player.load(props.videoId)
+    // if (props.videoId) {
+    // }
   })
 
   onBeforeUnmount(() => {
