@@ -5075,6 +5075,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lodash.merge@npm:^4.6.2":
+  version: 4.6.2
+  resolution: "lodash.merge@npm:4.6.2"
+  checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
+  languageName: node
+  linkType: hard
+
 "lodash.pick@npm:^4.4.0":
   version: 4.4.0
   resolution: "lodash.pick@npm:4.4.0"
@@ -7026,6 +7033,7 @@ __metadata:
     "@nuxtjs/tailwindcss": ^6.4.1
     "@tailwindcss/line-clamp": ^0.4.2
     nuxt: ^3.2.3
+    sanity-blocks-vue-component: ^1.0.1
     yt-player: ^3.6.1
   languageName: unknown
   linkType: soft
@@ -7073,6 +7081,16 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: cab8f25ae6f1434abee8d80023d7e72b598cf1327164ddab31003c51215526801e40b66c5e65d658a0af1e9d6478cadcb4c745f4bd6751f97d8644786c0978b0
+  languageName: node
+  linkType: hard
+
+"sanity-blocks-vue-component@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "sanity-blocks-vue-component@npm:1.0.1"
+  dependencies:
+    lodash.merge: ^4.6.2
+    vue: ^3.0.0
+  checksum: fd123b0f7ba1baa70974fa547778083a5ad2a1131195b98218ea538ca34ff6d1406a016352dbb929af78d389b77863a57a0d57a99378263333a9d7bac15031ca
   languageName: node
   linkType: hard
 
@@ -8176,7 +8194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:^3.2.47":
+"vue@npm:^3.0.0, vue@npm:^3.2.47":
   version: 3.2.47
   resolution: "vue@npm:3.2.47"
   dependencies:

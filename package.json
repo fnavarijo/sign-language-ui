@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/sanity": "^1.6.0",
+    "sanity-blocks-vue-component": "^1.0.1",
     "yt-player": "^3.6.1"
   }
 }
