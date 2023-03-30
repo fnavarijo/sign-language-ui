@@ -47,7 +47,9 @@ if (!lection.value) {
       </AppHeading>
     </header>
     <section class="mt-10">
-      <YoutubeVideo :video-id="lection?.videoId" />
+      <ClientOnly>
+        <YoutubeVideo :video-id="lection?.videoId" />
+      </ClientOnly>
     </section>
     
     <section class="px-4 xl:px-0 absolute left-0 w-full min-h-[40vh] bg-primary-700 text-neutral-100 mt-20 overflow-hidden flex justify-center">
