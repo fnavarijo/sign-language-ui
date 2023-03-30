@@ -1,6 +1,6 @@
 <template>
   <div class="relative">
-    <div class="max-w-screen-xl mx-auto">
+    <div class="max-w-screen-xl mx-auto px-4">
       <AppNav />
       <NuxtPage />
     </div>
