@@ -1,29 +1,26 @@
 <script lang="ts" setup>
-import { onMounted, onBeforeUnmount } from 'vue';
+import { onMounted } from 'vue';
 // TODO: Add Shimer for loading
-import YTPlayer from 'yt-player';
+import YoutubePlayer from 'youtube-player'
 
 interface YoutubeVideoProps {
   videoId?: string;
 }
 
-let player: YTPlayer;
+const props = defineProps<YoutubeVideoProps>();
+
 const playerDimensions = {
   width: 1080,
   height: 607,
 };
 
-const props = defineProps<YoutubeVideoProps>();
-
 onMounted(() => {
   if (props.videoId) {
-    player = new YTPlayer('#yt-video');
-    player.setSize(playerDimensions.width, playerDimensions.height);
-    player.load(props.videoId);
+    YoutubePlayer('yt-video', {
+      videoId: props.videoId,
+      ...playerDimensions
+    });
   }
-});
-onBeforeUnmount(() => {
-  player.destroy();
 });
 </script>
 
