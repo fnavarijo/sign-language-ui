@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { SanityBlocks } from 'sanity-blocks-vue-component'
+// import { SanityBlocks } from 'sanity-blocks-vue-component'
 
 import { getSanityImage } from '~/transformers/image';
 import { Lection } from '~/types/sanity-resources/Lection'
@@ -57,7 +57,8 @@ if (!lection.value) {
         </AppHeading>
         <div class="grid grid-cols-[3fr_1fr]">
           <div class="mt-6 content-block">
-            <SanityBlocks :blocks="lection?.content" />
+            {{  lection?.content  }}
+            <!-- <SanityBlocks :blocks="lection?.content" /> -->
           </div>
           <img class="absolute bottom-0 right-0 w-80 transform translate-y-1/4 " :src="lection?.signImageUrl" alt="" />
         </div>
