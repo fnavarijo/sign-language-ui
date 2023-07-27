@@ -1,24 +1,34 @@
 <script lang="ts" setup>
+import { useAuth0 } from '@auth0/auth0-vue';
+
 import CourseCard from '~/components/Dashboard/CourseCard.vue';
 import { getSanityImage } from '~/transformers/image';
+
+const { isAuthenticated } = useAuth0();
+
+// Redirect to / if user is not authenticated
+onMounted(() => {
+  if (!isAuthenticated.value) {
+    navigateTo('/');
+  }
+});
 
 type SanityResouce = {
   asset: {
     _ref: string;
-  }
-}
+  };
+};
 
 type SanityLection = {
   _id: string;
   name: string;
   description: string;
   sign: SanityResouce;
-}
+};
 
 const { data: lections } = await useAsyncData('lections', async () => {
   const query = groq`*[_type == "lesson"]`;
   const { data } = await useSanityQuery<SanityLection[]>(query);
-  console.log(data)
   return data?.value?.map((lection) => ({
     lectionId: lection._id,
     name: lection.name,
@@ -26,7 +36,6 @@ const { data: lections } = await useAsyncData('lections', async () => {
     signImageUrl: getSanityImage(lection.sign.asset._ref),
   }));
 });
-
 </script>
 
 <template>

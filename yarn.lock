@@ -15,6 +15,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@auth0/auth0-spa-js@npm:^2.0.4":
+  version: 2.0.4
+  resolution: "@auth0/auth0-spa-js@npm:2.0.4"
+  checksum: 1ff91b47cca70bfc911a0bd97ee5a4d9e055784cde7961266ca68d3c4d1721b11aba1d33fee5a1919d1808f21949682041e6cd293bb014e2f1f1edfe454e8f0c
+  languageName: node
+  linkType: hard
+
+"@auth0/auth0-vue@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@auth0/auth0-vue@npm:2.1.0"
+  dependencies:
+    "@auth0/auth0-spa-js": ^2.0.4
+    vue: ^3.2.41
+  peerDependencies:
+    vue-router: ^4.0.12
+  peerDependenciesMeta:
+    vue-router:
+      optional: true
+  checksum: f6a83796598780c81bf87332cc3888abf24eca2b613d715f0cd2de974b19ae111a376462d3872741f8a01170136a87f546be0318f4d7a0a35d0cdab43505fda4
+  languageName: node
+  linkType: hard
+
 "@azure/abort-controller@npm:^1.0.0, @azure/abort-controller@npm:^1.0.4":
   version: 1.1.0
   resolution: "@azure/abort-controller@npm:1.1.0"
@@ -7028,6 +7050,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@auth0/auth0-vue": ^2.1.0
     "@nuxtjs/google-fonts": prerelease
     "@nuxtjs/sanity": ^1.6.0
     "@nuxtjs/tailwindcss": ^6.4.1
@@ -8201,7 +8224,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue@npm:^3.0.0, vue@npm:^3.2.47":
+"vue@npm:^3.0.0, vue@npm:^3.2.41, vue@npm:^3.2.47":
   version: 3.2.47
   resolution: "vue@npm:3.2.47"
   dependencies:
