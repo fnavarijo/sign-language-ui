@@ -1,5 +1,14 @@
 import { SanityClient } from '@sanity/client';
 
+// On client
+// get all the lessons
+// get all the lessons progress where the user is: userId
+// progressId
+// merge both to show the progress
+
+// I have the lessonId, userId
+
+// TODO: How should I handle the lessons and the user information?
 // TODO: How can I get the email and lesson ref?
 // TODO: If user + lesson already exists, update progress
 // TODO: Can I read the user from Auth0?
@@ -8,9 +17,10 @@ export default defineEventHandler(async (event) => {
   const { userRef, lessonRef, status, relationId } = await readBody(event);
 
   if (!userRef || !lessonRef || !status) {
-    return {
-      message: 'Missing required fields',
-    };
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Missing required fields',
+    });
   }
 
   const sanity = useSanity();
@@ -31,18 +41,23 @@ export default defineEventHandler(async (event) => {
   };
 
   try {
-    // TODO: should create it only if all fields are existing
-    const result = await sanityClient.create(lessonProgress);
-    console.log(result);
+    if (!relationId) {
+      const document = await sanityClient.create(lessonProgress);
+      return {
+        message: 'Progress saved',
+        details: document,
+      };
+    }
 
+    const document = await sanityClient
+      .patch(relationId)
+      .set(lessonProgress)
+      .commit();
     return {
-      message: 'Successfully saved progress',
+      message: 'Progress updated',
+      details: document,
     };
   } catch (error) {
-    console.error(error);
-
-    return {
-      message: 'Failed to save progress',
-    };
+    throw error;
   }
 });

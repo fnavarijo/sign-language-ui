@@ -2,6 +2,11 @@ import { auth, UnauthorizedError } from 'express-oauth2-jwt-bearer';
 import { promisifyMiddleware } from '~/lib/promisifyMiddleware';
 
 export default defineEventHandler(async (event) => {
+  if (event.path !== '/api/saveProgress') {
+    return;
+  }
+
+  console.log('Running it', event);
   const checkJwt = auth({
     audience: process.env.AUTH0_API_AUDIENCE,
     issuerBaseURL: process.env.AUTH0_API_ISSUER_BASE_URL,
