@@ -1537,7 +1537,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/compiler-sfc@npm:3.3.4, @vue/compiler-sfc@npm:^3.3.4":
+"@vue/compiler-sfc@npm:3.3.4, @vue/compiler-sfc@npm:^3.2.20, @vue/compiler-sfc@npm:^3.3.4":
   version: 3.3.4
   resolution: "@vue/compiler-sfc@npm:3.3.4"
   dependencies:
@@ -6610,6 +6610,7 @@ __metadata:
     nuxt: ^3.2.3
     sanity-blocks-vue-component: ^1.0.1
     type-is: ^1.6.18
+    vite-svg-loader: ^4.0.0
     youtube-player: ^5.6.0
   languageName: unknown
   linkType: soft
@@ -7657,6 +7658,16 @@ __metadata:
     vue-tsc:
       optional: true
   checksum: f2b2e0a4695e0f91d5a9e7591dcf6e6202edaa7fa70f60525c534f2a908983b2d44086851f9bd30b9be08f5f4f2e3f524a4ea13184bc4fc4fb9bbeefe17396e7
+  languageName: node
+  linkType: hard
+
+"vite-svg-loader@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "vite-svg-loader@npm:4.0.0"
+  dependencies:
+    "@vue/compiler-sfc": ^3.2.20
+    svgo: ^3.0.2
+  checksum: 2363054b33ee26baf440a43bc9f301dec4c7a89b37f00539546b2cb75ef883ec311cdf990d9d3010870d776974f8c52961ca459cd90fdf3969501840ca631feb
   languageName: node
   linkType: hard
 

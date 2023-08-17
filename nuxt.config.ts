@@ -1,3 +1,5 @@
+import svgLoader from 'vite-svg-loader';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/google-fonts', '@nuxtjs/sanity'],
@@ -10,5 +12,8 @@ export default defineNuxtConfig({
     projectId: '4xfj4i31',
     apiVersion: '2023-03-15',
     token: process.env.SANITY_SECRET_TOKEN,
+  },
+  vite: {
+    plugins: [svgLoader()],
   },
 });

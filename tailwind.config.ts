@@ -11,6 +11,7 @@ export default <Partial<Config>>{
       },
       neutral: {
         100: '#F3F5F5',
+        400: '#c7d1d1',
         800: '#1D2227',
       },
     },
@@ -35,11 +36,9 @@ export default <Partial<Config>>{
         ],
       },
       gridTemplateRows: {
-        'course-card-rows': 'minmax(0, 1fr) auto'
-      }
+        'course-card-rows': 'minmax(0, 1fr) auto',
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp')
-  ]
+  plugins: [require('@tailwindcss/line-clamp')],
 };
