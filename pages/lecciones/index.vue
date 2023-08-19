@@ -2,45 +2,33 @@
 import { useAuth0 } from '@auth0/auth0-vue';
 
 import { getSanityImage } from '~/transformers/image';
-import { fetchLessonsWithProgress } from '~/lib/queries/fetchLessonsWithProgress';
+import { fetchLessonsByUser } from '~/lib/queries/fetchLessonsByUser';
+import { Lesson, LessonWithProgress } from '~/types/sanity';
 
 import CourseCard from '~/components/Dashboard/CourseCard.vue';
 
 const { isAuthenticated, user } = useAuth0();
 
 // Redirect to / if user is not authenticated
+// Is there a way to check that the user is authenticated before doing the redirection?
 onMounted(() => {
   if (!isAuthenticated.value) {
     navigateTo('/');
   }
 });
 
-type SanityResouce = {
-  asset: {
-    _ref: string;
-  };
-};
-
-// Join Types
-type SanityLection = {
-  _id: string;
-  name: string;
-  description: string;
-  sign: SanityResouce;
-};
-
-const { data: lections } = await useAsyncData('lections', async () => {
-  const query = fetchLessonsWithProgress({
-    userEmail: user.value?.email!,
+const { data: lessons } = await useAsyncData('lessons', async () => {
+  const query = fetchLessonsByUser({
+    email: user.value?.email!,
   });
 
-  const { data } = await useSanityQuery<SanityLection[]>(query);
-  return data?.value?.map((lection) => ({
-    lectionId: lection._id,
-    name: lection.name,
-    description: lection.description,
-    signImageUrl: getSanityImage(lection.sign.asset._ref),
-    progress: lection.progress[0]?.status,
+  const { data } = await useSanityQuery<Lesson[]>(query);
+  return (data?.value as LessonWithProgress[]).map((lesson) => ({
+    lectionId: lesson._id,
+    name: lesson.name,
+    description: lesson.description,
+    signImageUrl: getSanityImage(lesson.sign.asset._ref),
+    progress: lesson.progress[0]?.status,
   }));
 });
 </script>
@@ -54,7 +42,7 @@ const { data: lections } = await useAsyncData('lections', async () => {
       class="mt-8 md:mt-16 grid grid-cols-1 auto-rows-[400px] md:auto-rows-[500px] md:grid-cols-3 gap-5 md:gap-16"
     >
       <CourseCard
-        v-for="(lection, index) in lections"
+        v-for="(lection, index) in lessons"
         v-bind="lection"
         :key="index"
       />
