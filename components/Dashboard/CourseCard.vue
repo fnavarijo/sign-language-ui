@@ -1,12 +1,8 @@
 <script lang="ts" setup>
+import { StatusProgress } from '~/types/sanity';
+
 import CheckIcon from '~/assets/check.svg?component';
 import WaitIcon from '~/assets/wait.svg?component';
-
-enum StatusProgress {
-  NotStarted = 'not_started',
-  InProgress = 'started',
-  Completed = 'completed',
-}
 
 const props = defineProps({
   lectionId: {

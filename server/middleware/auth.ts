@@ -6,7 +6,6 @@ export default defineEventHandler(async (event) => {
     return;
   }
 
-  console.log('Running it', event);
   const checkJwt = auth({
     audience: process.env.AUTH0_API_AUDIENCE,
     issuerBaseURL: process.env.AUTH0_API_ISSUER_BASE_URL,

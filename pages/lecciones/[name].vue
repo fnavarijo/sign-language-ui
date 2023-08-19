@@ -4,22 +4,23 @@ import { SanityBlocks } from 'sanity-blocks-vue-component';
 
 import { getSanityImage } from '~/transformers/image';
 import { fetchLesson } from '~/lib/queries/fetchLesson';
-import { Lection } from '~/types/sanity-resources/Lection';
+import { Lesson } from '~/types/sanity';
 
+import BackIcon from '~/assets/back.svg?component';
 import VideoPlayer from '~/components/Common/VideoPlayer.vue';
 
 const route = useRoute();
 const { getAccessTokenSilently, user } = useAuth0();
 
-const { name: lectionId } = route.params;
+const { name: lessonId } = route.params;
 const token = await getAccessTokenSilently();
 
+// TODO: Add 404 page when lesson is not found
 const { data: lesson } = await useAsyncData(
-  `lections-${lectionId}`,
+  `lections-${lessonId}`,
   async () => {
-    // const query = groq`*[_type == "lesson" && _id == "${lectionId}"]`;
-    const query = fetchLesson({ id: lectionId, userEmail: user.value?.email! });
-    const { data } = await useSanityQuery<Lection[]>(query);
+    const query = fetchLesson({ id: lessonId, userEmail: user.value?.email! });
+    const { data } = await useSanityQuery<Lesson[]>(query);
 
     const lesson = data.value;
 
@@ -51,6 +52,23 @@ if (!lesson.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' });
 }
 
+// TODO: status need typing
+async function saveProgress({ status = 'started' }) {
+  return await fetch('/api/saveProgress', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify({
+      userEmail: user.value?.email!,
+      lessonRef: lesson.value?.id,
+      status,
+      relationId: lesson.value?.progressId,
+    }),
+  });
+}
+
 async function onPlay() {
   if (
     lesson.value?.progressStatus === 'started' ||
@@ -58,21 +76,8 @@ async function onPlay() {
   ) {
     return;
   }
-  // request using fetch API function to /api/saveProgress that will send userRef, lessonRef, status
-  const response = await fetch('/api/saveProgress', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: 'Bearer ' + token,
-    },
-    body: JSON.stringify({
-      // get User ref. Probably send user email
-      userRef: 'EMm72SZbLZTRULqDxH4IJx',
-      lessonRef: lesson.value?.id,
-      status: 'started',
-      relationId: lesson.value?.progressId,
-    }),
-  });
+  // TODO: what happens if this fails? Should we show an error message?
+  await saveProgress({ status: 'started' });
 }
 
 async function onEnd() {
@@ -80,19 +85,7 @@ async function onEnd() {
     return;
   }
 
-  const response = await fetch('/api/saveProgress', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: 'Bearer ' + token,
-    },
-    body: JSON.stringify({
-      userRef: 'EMm72SZbLZTRULqDxH4IJx',
-      lessonRef: lesson.value?.id,
-      status: 'completed',
-      relationId: lesson.value?.progressId,
-    }),
-  });
+  await saveProgress({ status: 'completed' });
 }
 </script>
 
@@ -104,7 +97,8 @@ async function onEnd() {
         to="/lecciones"
         class="bg-primary-500 rounded-full h-12 w-12 flex justify-center items-center"
       >
-        <img src="~/assets/back.svg" alt="Regresar a pantalla principal" />
+        <!-- TODO: Need to make the icon centered -->
+        <BackIcon />
       </NuxtLink>
       <AppHeading class="ml-6 text-primary-700" :level="1">
         {{ lesson?.name }}
