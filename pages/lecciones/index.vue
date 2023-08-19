@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { useAuth0 } from '@auth0/auth0-vue';
 
-import CourseCard from '~/components/Dashboard/CourseCard.vue';
 import { getSanityImage } from '~/transformers/image';
+import { fetchLessonsWithProgress } from '~/lib/queries/fetchLessonsWithProgress';
 
-const { isAuthenticated } = useAuth0();
+import CourseCard from '~/components/Dashboard/CourseCard.vue';
+
+const { isAuthenticated, user } = useAuth0();
 
 // Redirect to / if user is not authenticated
 onMounted(() => {
@@ -19,6 +21,7 @@ type SanityResouce = {
   };
 };
 
+// Join Types
 type SanityLection = {
   _id: string;
   name: string;
@@ -27,13 +30,17 @@ type SanityLection = {
 };
 
 const { data: lections } = await useAsyncData('lections', async () => {
-  const query = groq`*[_type == "lesson"]`;
+  const query = fetchLessonsWithProgress({
+    userEmail: user.value?.email!,
+  });
+
   const { data } = await useSanityQuery<SanityLection[]>(query);
   return data?.value?.map((lection) => ({
     lectionId: lection._id,
     name: lection.name,
     description: lection.description,
     signImageUrl: getSanityImage(lection.sign.asset._ref),
+    progress: lection.progress[0]?.status,
   }));
 });
 </script>

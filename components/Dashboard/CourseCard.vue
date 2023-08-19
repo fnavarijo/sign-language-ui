@@ -3,9 +3,9 @@ import CheckIcon from '~/assets/check.svg?component';
 import WaitIcon from '~/assets/wait.svg?component';
 
 enum StatusProgress {
-  NotStarted = 'NotStarted',
-  InProgress = 'InProgress',
-  Completed = 'Completed',
+  NotStarted = 'not_started',
+  InProgress = 'started',
+  Completed = 'completed',
 }
 
 const props = defineProps({
@@ -27,7 +27,7 @@ const props = defineProps({
   },
   progress: {
     type: String,
-    required: true,
+    default: StatusProgress.NotStarted,
     validator: (value) => {
       return (
         value === StatusProgress.NotStarted ||
