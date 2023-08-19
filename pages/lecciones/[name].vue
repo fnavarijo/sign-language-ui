@@ -6,7 +6,6 @@ import { getSanityImage } from '~/transformers/image';
 import { fetchLesson } from '~/lib/queries/fetchLesson';
 import { Lection } from '~/types/sanity-resources/Lection';
 
-import YoutubeVideo from '~/components/YoutubeVideo.vue';
 import VideoPlayer from '~/components/Common/VideoPlayer.vue';
 
 const route = useRoute();
@@ -113,7 +112,6 @@ async function onEnd() {
     </header>
     <section class="mt-10">
       <ClientOnly>
-        <!-- <YoutubeVideo :video-id="lection?.videoId" /> -->
         <VideoPlayer
           video-src="https://res.cloudinary.com/dkvtpo8w1/video/upload/v1691037209/Videos/boop-it.mp4"
           :playerOptions="playerOptions"
