@@ -1,34 +1,43 @@
 <script lang="ts" setup>
+import { useAuth0 } from '@auth0/auth0-vue';
 import { SanityBlocks } from 'sanity-blocks-vue-component';
 
 import { getSanityImage } from '~/transformers/image';
+import { fetchLesson } from '~/lib/queries/fetchLesson';
 import { Lection } from '~/types/sanity-resources/Lection';
 
 import YoutubeVideo from '~/components/YoutubeVideo.vue';
 import VideoPlayer from '~/components/Common/VideoPlayer.vue';
 
 const route = useRoute();
-const { name: lectionId } = route.params;
+const { getAccessTokenSilently, user } = useAuth0();
 
-const { data: lection } = await useAsyncData(
+const { name: lectionId } = route.params;
+const token = await getAccessTokenSilently();
+
+const { data: lesson } = await useAsyncData(
   `lections-${lectionId}`,
   async () => {
-    const query = groq`*[_type == "lesson" && _id == "${lectionId}"]`;
+    // const query = groq`*[_type == "lesson" && _id == "${lectionId}"]`;
+    const query = fetchLesson({ id: lectionId, userEmail: user.value?.email! });
     const { data } = await useSanityQuery<Lection[]>(query);
 
-    const lection = data.value?.[0];
+    const lesson = data.value;
 
-    if (!lection) {
+    if (!lesson) {
       return null;
     }
 
-    const [_, videoId] = lection.video.split('?v=');
+    const [_, videoId] = lesson.video.split('?v=');
 
     return {
-      name: lection.name,
-      content: lection.content,
+      id: lesson._id,
+      name: lesson.name,
+      content: lesson.content,
       videoId: videoId,
-      signImageUrl: getSanityImage(lection.sign.asset._ref),
+      signImageUrl: getSanityImage(lesson.sign.asset._ref),
+      progressStatus: lesson.progress[0]?.status,
+      progressId: lesson.progress[0]?._id,
     };
   }
 );
@@ -39,16 +48,52 @@ const playerOptions = {
   fluid: true,
 };
 
-if (!lection.value) {
+if (!lesson.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page Not Found' });
 }
 
-function onPlay() {
-  console.log('Played once');
+async function onPlay() {
+  if (
+    lesson.value?.progressStatus === 'started' ||
+    lesson.value?.progressStatus === 'completed'
+  ) {
+    return;
+  }
+  // request using fetch API function to /api/saveProgress that will send userRef, lessonRef, status
+  const response = await fetch('/api/saveProgress', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify({
+      // get User ref. Probably send user email
+      userRef: 'EMm72SZbLZTRULqDxH4IJx',
+      lessonRef: lesson.value?.id,
+      status: 'started',
+      relationId: lesson.value?.progressId,
+    }),
+  });
 }
 
-function onEnd() {
-  console.log('Finisheeed');
+async function onEnd() {
+  if (lesson.value?.progressStatus === 'completed') {
+    return;
+  }
+
+  const response = await fetch('/api/saveProgress', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: 'Bearer ' + token,
+    },
+    body: JSON.stringify({
+      userRef: 'EMm72SZbLZTRULqDxH4IJx',
+      lessonRef: lesson.value?.id,
+      status: 'completed',
+      relationId: lesson.value?.progressId,
+    }),
+  });
 }
 </script>
 
@@ -63,7 +108,7 @@ function onEnd() {
         <img src="~/assets/back.svg" alt="Regresar a pantalla principal" />
       </NuxtLink>
       <AppHeading class="ml-6 text-primary-700" :level="1">
-        {{ lection?.name }}
+        {{ lesson?.name }}
       </AppHeading>
     </header>
     <section class="mt-10">
@@ -87,11 +132,11 @@ function onEnd() {
         </AppHeading>
         <div class="grid grid-cols-[3fr_1fr]">
           <div class="mt-6 content-block">
-            <SanityBlocks :blocks="lection?.content" />
+            <SanityBlocks :blocks="lesson?.content" />
           </div>
           <img
             class="absolute bottom-0 right-0 w-80 transform translate-y-1/4"
-            :src="lection?.signImageUrl"
+            :src="lesson?.signImageUrl"
             alt=""
           />
         </div>

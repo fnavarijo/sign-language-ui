@@ -6,7 +6,6 @@ const { getAccessTokenSilently } = useAuth0();
 const sendPostRequest = async () => {
   // get access_token from Auth0 client authentication
   const token = await getAccessTokenSilently();
-  console.log('Access token', token);
 
   // Fetch request to the route /api/saveProgress
   fetch('/api/saveProgress', {

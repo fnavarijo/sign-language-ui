@@ -11,6 +11,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     clientId: appConfig.authClientId,
     authorizationParams: {
       redirect_uri: appConfig.authRedirectUri,
+      audience: appConfig.authAudience,
     },
   });
 
