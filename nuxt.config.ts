@@ -16,6 +16,14 @@ export default defineNuxtConfig({
   vite: {
     plugins: [svgLoader()],
   },
+  runtimeConfig: {
+    public: {
+      authClientDomain: process.env.AUTH_CLIENT_DOMAIN,
+      authClientId: process.env.AUTH_CLIENT_ID,
+      authRedirectUri: process.env.AUTH_REDIRECT_URI,
+      authAudience: process.env.AUTH_AUDIENCE,
+    },
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
