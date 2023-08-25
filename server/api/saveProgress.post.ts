@@ -1,5 +1,6 @@
-// import { SanityClient } from '@sanity/client';
-// const { SanityClient } = require('@sanity/client')
+import * as client from '@sanity/client';
+// const sanityClient = require('@sanity/client');
+// import { us } from '@nuxtjs/sanity'
 
 import { User, StatusProgress, ResourceType } from '~/types/sanity';
 
