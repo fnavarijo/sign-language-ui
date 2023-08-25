@@ -1,4 +1,5 @@
-import { SanityClient } from '@sanity/client';
+// import { SanityClient } from '@sanity/client';
+// const { SanityClient } = require('@sanity/client')
 
 import { User, StatusProgress, ResourceType } from '~/types/sanity';
 
@@ -47,7 +48,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const sanity = useSanity();
-  const sanityClient = sanity.client as SanityClient;
+  const sanityClient = sanity.client;
 
   try {
     const user = await sanityClient.fetch<User>(
@@ -70,6 +71,7 @@ export default defineEventHandler(async (event) => {
     });
 
     if (!relationId) {
+      // @ts-ignore
       const document = await sanityClient.create(lessonProgress);
       return {
         message: 'Progress saved',
@@ -78,6 +80,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const document = await sanityClient
+      // @ts-ignore
       .patch(relationId)
       .set(lessonProgress)
       .commit();
