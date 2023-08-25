@@ -1,15 +1,15 @@
 <script setup>
 import { useAuth0 } from '@auth0/auth0-vue';
 
-// const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
+const { logout, loginWithRedirect, isAuthenticated } = useAuth0();
 
-// const login = () => {
-//   loginWithRedirect();
-// };
+const login = () => {
+  loginWithRedirect();
+};
 
-// const logoutUser = () => {
-//   logout({ logoutParams: { returnTo: window.location.origin } });
-// };
+const logoutUser = () => {
+  logout({ logoutParams: { returnTo: window.location.origin } });
+};
 
 // TODO: We could move cerrar session to a component and render it only on client
 </script>
