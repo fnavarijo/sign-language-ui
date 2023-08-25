@@ -12,25 +12,26 @@ const { isAuthenticated, user } = useAuth0();
 // Redirect to / if user is not authenticated
 // Is there a way to check that the user is authenticated before doing the redirection?
 onMounted(() => {
-  if (!isAuthenticated.value) {
-    navigateTo('/');
-  }
+  // if (!isAuthenticated.value) {
+  //   navigateTo('/');
+  // }
 });
 
-const { data: lessons } = await useAsyncData('lessons', async () => {
-  const query = fetchLessonsByUser({
-    email: user.value?.email!,
-  });
+// const { data: lessons } = await useAsyncData('lessons', async () => {
+//   const query = fetchLessonsByUser({
+//     email: user.value?.email!,
+//   });
 
-  const { data } = await useSanityQuery<Lesson[]>(query);
-  return (data?.value as LessonWithProgress[]).map((lesson) => ({
-    lectionId: lesson._id,
-    name: lesson.name,
-    description: lesson.description,
-    signImageUrl: getSanityImage(lesson.sign.asset._ref),
-    progress: lesson.progress[0]?.status,
-  }));
-});
+//   const { data } = await useSanityQuery<Lesson[]>(query);
+//   return (data?.value as LessonWithProgress[]).map((lesson) => ({
+//     lectionId: lesson._id,
+//     name: lesson.name,
+//     description: lesson.description,
+//     signImageUrl: getSanityImage(lesson.sign.asset._ref),
+//     progress: lesson.progress[0]?.status,
+//   }));
+// });
+const lessons = [];
 </script>
 
 <template>
