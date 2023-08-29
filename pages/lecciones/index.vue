@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import '@sanity/client';
 import { useAuth0 } from '@auth0/auth0-vue';
 
 import { getSanityImage } from '~/transformers/image';
