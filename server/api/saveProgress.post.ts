@@ -1,4 +1,4 @@
-import { SanityClient } from '@sanity/client';
+import { createClient, SanityClient } from '@sanity/client';
 
 import { User, StatusProgress, ResourceType } from '~/types/sanity';
 
