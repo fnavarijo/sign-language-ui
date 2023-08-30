@@ -13,6 +13,8 @@ export default defineNuxtPlugin((nuxtApp) => {
       redirect_uri: runtimeConfig.public.authRedirectUri,
       audience: runtimeConfig.public.authAudience,
     },
+    useRefreshTokens: true,
+    cacheLocation: 'localstorage',
   });
 
   nuxtApp.vueApp.use(auth0Config);
