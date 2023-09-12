@@ -1,2 +1,4 @@
 [functions]
-  external_node_modules = ["@sanity/client"]
+  included_files = [
+    "./node_modules/@sanity/client/**/*"
+  ]
