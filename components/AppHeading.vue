@@ -7,6 +7,10 @@ const props = defineProps({
     required: true,
     validator: (value) => value >= 1 && value <= 6,
   },
+  isBold: {
+    type: Boolean,
+    default: false,
+  },
 });
 const slots = useSlots();
 
@@ -17,10 +21,12 @@ const textSize = {
   h2: 'text-2xl md:text-4xl',
 };
 
+const titleWeightClass = props.isBold ? 'font-bold' : 'font-semibold';
+
 const Heading = () =>
   h(
     headingTag,
-    { class: `${textSize[headingTag]} font-semibold text-inherit` },
+    { class: `${textSize[headingTag]} ${titleWeightClass} text-inherit` },
     slots
   );
 </script>
